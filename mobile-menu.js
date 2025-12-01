@@ -68,8 +68,9 @@ mobileSearchInput?.addEventListener("keydown", (e) => {
 
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-        navigator.serviceWorker.register("/sw.js").catch(function (err) {
+        navigator.serviceWorker.register("sw.js").catch(function (err) {
             console.error("Service Worker 등록 실패:", err);
         });
     });
+
 }
