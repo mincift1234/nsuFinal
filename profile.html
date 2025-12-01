@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>내 정보 — JUP</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#121212" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="top-inner">
+        <!-- 햄버거 -->
+        <button class="icon-btn hamburger" aria-label="메뉴 열기">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="20" height="2" rx="1" fill="#bbb" />
+            <rect y="6" width="20" height="2" rx="1" fill="#bbb" />
+            <rect y="12" width="20" height="2" rx="1" fill="#bbb" />
+          </svg>
+        </button>
+
+        <!-- 브랜드 -->
+        <a class="brand" href="index.html" aria-label="홈으로 이동">
+          <span class="brand-text">JUP</span>
+        </a>
+
+        <!-- 검색창 대신 ‘빈 자리’만 두는 박스 (눈에는 안 보이는 여백) -->
+        <div class="search-box search-box--empty"></div>
+
+        <!-- 로그인 / 프로필 영역 -->
+        <div id="authArea">
+          <button id="loginBtn" class="chip" style="border-radius: 999px">Google 로그인</button>
+          <img id="userAvatar" alt="프로필" referrerpolicy="no-referrer" style="display: none" />
+          <div id="profileMenu" class="hidden" aria-hidden="true">
+            <ul>
+              <li id="profile-info"><a href="profile.html">내 정보</a></li>
+              <li id="profile-logout">로그아웃</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 모바일 햄버거 메뉴 슬라이드 -->
+    <div class="mobile-menu-wrap">
+      <div class="mobile-menu-overlay"></div>
+
+      <div class="mobile-menu">
+        <button class="close-menu" aria-label="메뉴 닫기">✕</button>
+
+        <div class="mobile-menu-section">
+          <input
+            type="search"
+            id="mobileSearchInput"
+            class="mobile-search"
+            placeholder="분실물 검색"
+            aria-label="분실물 검색" />
+        </div>
+
+        <hr />
+
+        <button type="button" class="mobile-menu-item" id="mobileWriteBtn">글쓰기</button>
+
+        <hr />
+
+        <button type="button" class="mobile-menu-item" id="mobileMailBtn">쪽지함</button>
+      </div>
+    </div>
+
+    <main class="main-content">
+      <h2 class="page-title profile-title">내 정보</h2>
+
+      <div class="profile-wrapper">
+        <article class="profile-card" id="profileCard" aria-label="프로필 카드">
+          <div class="card-inner">
+            <div class="profile-avatar" id="avatarWrap">
+              <!-- profile.js가 이 id를 찾음 -->
+              <img
+                id="profilePhoto"
+                class="profile-photo"
+                src="https://via.placeholder.com/170x170.png?text=프로필+사진"
+                alt="프로필 사진" />
+            </div>
+
+            <div class="profile-info">
+              <dl>
+                <div class="row">
+                  <dt>이메일</dt>
+                  <dd class="email long-text"><span id="userEmail">-</span></dd>
+                </div>
+
+                <div class="row">
+                  <dt>닉네임</dt>
+                  <dd>
+                    <!-- id를 JS 기준으로 displayName 으로 맞춤 -->
+                    <input id="displayName" class="input-inline" type="text" value="테스트1" />
+                  </dd>
+                </div>
+
+                <div class="row">
+                  <dt>회원 가입</dt>
+                  <dd id="createdAt">-</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <!-- 사진 변경: id를 btnChoosePhoto / photoInput 으로 통일 -->
+          <div class="photo-actions">
+            <input id="photoInput" type="file" accept="image/*" style="display: none" />
+            <button id="btnChoosePhoto" class="chip avatar-change">사진 변경</button>
+          </div>
+
+          <!-- 저장 / 탈퇴 -->
+          <div class="profile-actions">
+            <button id="saveNameBtn" class="btn btn-save">저장</button>
+            <button id="deleteAccountBtn" class="btn btn-delete">회원 탈퇴</button>
+          </div>
+        </article>
+
+        <!-- 내 글: 아직 미구현이므로 JS가 찾을 수 있게 id만 남김 (CSS에서 숨겨짐) -->
+        <aside id="myPostsList" class="profile-posts" aria-label="내 글" style="display: none"></aside>
+      </div>
+    </main>
+
+    <!-- profile.js는 ES module 방식 -->
+    <script type="module" src="script.js"></script>
+    <script type="module" src="profile.js"></script>
+    <script src="mobile-menu.js"></script>
+  </body>
+</html>

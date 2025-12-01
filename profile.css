@@ -1,0 +1,157 @@
+/* --- 메인 컨텐츠 --- */
+.main-content {
+  max-width: 1100px;
+  margin: 18px auto 80px;
+  padding: 0 20px;
+  color: #e6e6e6;
+}
+
+.profile-title {
+  margin: 8px 0 18px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* --- 프로필 카드 전체 --- */
+.profile-card {
+  width: 100%;
+  max-width: 740px;
+  background: linear-gradient(180deg, rgba(38, 38, 38, 0.98), rgba(26, 26, 26, 0.98));
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  position: relative;
+}
+
+.card-inner {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* --- 아바타 --- */
+.profile-avatar {
+  width: 170px;
+  flex: 0 0 170px;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* --- 정보 텍스트 --- */
+.profile-info {
+  flex: 1;
+  min-width: 0; /* 오버플로우 방지의 핵심 */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+dt {
+  width: 70px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+dd {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.input-inline {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 14px;
+}
+
+/* 긴 이메일 자동 줄맞춤 */
+.long-text {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 사진 변경 버튼 */
+.photo-actions {
+  margin-top: 16px;
+}
+
+.avatar-change {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* 저장 / 탈퇴 */
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.btn-save {
+  background: #1aa37a;
+}
+
+.btn-delete {
+  background: #d66;
+}
+
+/* --- 모바일 최적화 --- */
+@media (max-width: 600px) {
+  .card-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-avatar {
+    margin-bottom: 14px;
+  }
+
+  dt {
+    width: 100%;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .input-inline {
+    width: 100%;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}

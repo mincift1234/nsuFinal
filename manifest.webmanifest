@@ -1,0 +1,23 @@
+{
+  "name": "JUP - 분실물 찾기",
+  "short_name": "JUP",
+  "description": "학교 분실물을 빠르게 찾는 분실물 찾기 서비스",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

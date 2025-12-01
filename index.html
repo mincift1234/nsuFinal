@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>분실물 찾기 — 다크 테마</title>
+        <link rel="manifest" href="manifest.webmanifest" />
+        <meta name="theme-color" content="#121212" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)" />
+    </head>
+    <body>
+        <header class="topbar">
+            <div class="top-inner">
+                <button class="icon-btn hamburger" aria-label="메뉴 열기">
+                    <!-- 햄버거 아이콘 -->
+                    <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="20" height="2" rx="1" fill="#bbb" />
+                        <rect y="6" width="20" height="2" rx="1" fill="#bbb" />
+                        <rect y="12" width="20" height="2" rx="1" fill="#bbb" />
+                    </svg>
+                </button>
+
+                <a class="brand" href="index.html" aria-label="홈으로 이동">
+                    <span class="brand-text">JUP</span>
+                </a>
+
+                <div class="search-box" role="search" aria-label="검색">
+                    <form class="search-form" id="searchForm" action="#" onsubmit="return false;">
+                        <input
+                            id="searchInput"
+                            type="search"
+                            placeholder="무엇을 찾으시나요? (예: 우산, 지갑)"
+                            aria-label="검색 입력" />
+                        <button class="icon-btn search-btn" type="submit" aria-label="검색">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M21 21l-4.35-4.35"
+                                    stroke="#fff"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <circle cx="11" cy="11" r="6" stroke="#fff" stroke-width="2" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="authArea" aria-hidden="false">
+                    <button id="loginBtn" class="chip" style="border-radius: 999px">Google 로그인</button>
+                    <img id="userAvatar" alt="프로필" referrerpolicy="no-referrer" style="display: none" />
+                    <div id="profileMenu" class="hidden" aria-hidden="true">
+                        <ul>
+                            <li id="profile-info"><a href="profile.html">내 정보</a></li>
+                            <li id="profile-logout">로그아웃</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button id="addBtn" class="add-btn" aria-label="등록" title="등록">
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"></path>
+                        <path
+                            d="M20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
+                    </svg>
+                </button>
+
+                <!-- 쪽지 확인 아이콘: 등록 버튼 오른쪽, 동일 사이즈(44x44) -->
+                <button id="inboxBtn" class="add-btn" aria-label="쪽지함" title="쪽지함" style="margin-left: 8px">
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 4h16v12H4z"></path>
+                        <path d="M22 20H2a2 2 0 0 1-2-2V6"></path>
+                        <path d="M22 6l-10 7L2 6"></path>
+                    </svg>
+                    <span id="inboxBadge" class="badge" style="display: none">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- 모바일 햄버거 메뉴 슬라이드 -->
+        <div class="mobile-menu-wrap">
+            <div class="mobile-menu-overlay"></div>
+
+            <div class="mobile-menu">
+                <button class="close-menu" aria-label="메뉴 닫기">✕</button>
+
+                <div class="mobile-menu-section">
+                    <input
+                        type="search"
+                        id="mobileSearchInput"
+                        class="mobile-search"
+                        placeholder="분실물 검색"
+                        aria-label="분실물 검색" />
+                </div>
+
+                <hr />
+
+                <button type="button" class="mobile-menu-item" id="mobileWriteBtn">글쓰기</button>
+
+                <hr />
+
+                <button type="button" class="mobile-menu-item" id="mobileMailBtn">쪽지함</button>
+            </div>
+        </div>
+
+        <nav class="category-bar" aria-label="카테고리">
+            <ul class="category-list" id="categoryList">
+                <li><button class="chip active" data-cat="전체">전체</button></li>
+                <li><button class="chip" data-cat="지갑">지갑</button></li>
+                <li><button class="chip" data-cat="가방">가방</button></li>
+                <li><button class="chip" data-cat="의류">의류</button></li>
+                <li><button class="chip" data-cat="전자기기">전자기기</button></li>
+                <li><button class="chip" data-cat="문서/증명">문서/증명</button></li>
+                <li><button class="chip" data-cat="악세서리">악세서리</button></li>
+                <li><button class="chip" data-cat="기타">기타</button></li>
+            </ul>
+        </nav>
+
+        <main class="container">
+            <section class="hero">
+                <p class="hero-text">학교 분실물, 빠르게 찾아드려요 — 사진과 위치만 등록해주세요.</p>
+            </section>
+
+            <section class="listings" aria-label="분실물 목록" id="listings">
+                <!-- JS가 Firestore에서 불러와 카드로 렌더 -->
+            </section>
+        </main>
+
+        <!-- 아이템 상세 모달 -->
+        <div id="itemModal" class="modal" aria-hidden="true" style="display: none">
+            <div class="modal-backdrop"></div>
+            <div class="modal-panel">
+                <button class="modal-close" aria-label="닫기">×</button>
+                <div class="modal-body">
+                    <figure class="modal-thumb"><img id="mImg" alt="" /></figure>
+                    <h3 id="mTitle" class="modal-title"></h3>
+                    <p id="mMeta" class="modal-meta"></p>
+                    <p id="mDesc" class="modal-desc"></p>
+
+                    <div id="ownerActions" class="owner-actions" style="display: none">
+                        <button id="btnEdit" class="chip chip--ghost">글 수정</button>
+                        <button id="btnDelete" class="chip" style="background: #b33">글 삭제</button>
+                    </div>
+
+                    <!-- 여기부터: 본인 인증/생김새 요청 전용 영역 (JS에서 상황에 따라 내용 채움) -->
+                    <div id="authActions" class="auth-actions" style="display: none"></div>
+                    <!-- 여기까지 추가 -->
+
+                    <div id="msgBox" class="msg-box">
+                        <textarea
+                            id="msgInput"
+                            class="textarea"
+                            rows="3"
+                            placeholder="작성자에게 쪽지 보내기"></textarea>
+
+                        <!-- 라디오: 닉네임 우선, 그 아래 익명 -->
+                        <div class="msg-opt" id="msgOpt">
+                            <label class="seg-radio">
+                                <input type="radio" name="senderMode" value="nickname" checked />
+                                <span>닉네임 표시</span>
+                            </label>
+                            <label class="seg-radio">
+                                <input type="radio" name="senderMode" value="anon" />
+                                <span>익명</span>
+                            </label>
+                        </div>
+
+                        <!-- 보내기 버튼은 맨 아래, 우측 정렬 -->
+                        <div class="msg-actions">
+                            <button id="msgSend" class="chip">보내기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 쪽지함 모달 -->
+        <div id="inboxModal" class="modal" aria-hidden="true" style="display: none">
+            <div class="modal-backdrop"></div>
+            <div class="modal-panel" style="max-width: 720px">
+                <button class="modal-close" aria-label="닫기">×</button>
+                <div class="modal-body">
+                    <h3 class="modal-title">쪽지함</h3>
+                    <div id="inboxList" class="inbox-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <a class="skip-link" href="#content">본문으로 건너뛰기</a>
+
+        <!-- 기존 스크립트 유지 (로그인/데이터 로직) -->
+        <script type="module" src="script.js"></script>
+        <script src="mobile-menu.js"></script>
+    </body>
+</html>
