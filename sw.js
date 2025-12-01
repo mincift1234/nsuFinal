@@ -5,17 +5,17 @@ const CACHE_NAME = "jup-cache-v1";
 // 오프라인용으로 캐시해둘 파일 목록 (필요하면 추가/수정)
 const APP_SHELL = [
     "/", // Netlify 루트
-    "/index.html",
-    "/styles.css",
-    "/mobile.css",
-    "/script.js",
-    "/mobile-menu.js",
-    "/register.html",
-    "/register.js",
-    "/profile.html",
-    "/profile.js",
-    "/icons/icon-192.png",
-    "/icons/icon-512.png"
+    "index.html",
+    "styles.css",
+    "mobile.css",
+    "script.js",
+    "mobile-menu.js",
+    "register.html",
+    "register.js",
+    "profile.html",
+    "profile.js",
+    "icons/icon-192.png",
+    "icons/icon-512.png"
 ];
 
 // 설치 단계: 앱 껍데기 캐시
@@ -76,3 +76,4 @@ self.addEventListener("fetch", (event) => {
         })
     );
 });
+
